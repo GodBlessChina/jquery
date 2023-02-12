@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jQuery实现运动</title>
+  <script src="jquery-3.6.3.js"></script>
+  <style>
+    div{
+      width: 100px;
+      height: 100px;
+      background-color: orange;
+      position: relative;
+    }
+  </style>
+</head>
+<body>
+
+<div></div>
+
+<script>
+ // 第一个参数{"left" : 800}表示盒子的运动终点，即盒子最终将运动到left为800的位置上；
+// 第二个参数3000表示运动的时长，以毫秒为单位，1000毫秒为1秒，即我们希望盒子以3秒完成动画
+  $("div").animate({"left": 800,"top":500},3000)
+</script>
+
+</body>
+</html>

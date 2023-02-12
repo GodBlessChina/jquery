@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>dom加载完成以后运行代码 给按钮添加点击事件</title>
+  <script type="text/javascript" src="jquery-3.6.3.js"></script>
+  <script type="text/javascript">
+    // 错误写法，dom没有加载完成，无法获取dom中的元素
+    // document.getElementById('bt1').
+    // addEventListener('click', clickHandler,false);
+
+    // 第一种写法：原生的js
+    /*window.onload = function (){
+        alert('绑定点击事件');
+
+        document.getElementById('bt1').
+        addEventListener('click', clickHandler,false);
+    }
+    */
+
+    // 第二种写法，jQuery正常写法
+    /*
+    $('document').ready(function (){
+      $("#bt1").click(clickHandler);
+    });
+    */
+
+    // 第三种写法，jQuery简化写法
+    /*$(function (){
+      $("#bt1").click(clickHandler);
+    })*/
+
+    function clickHandler() {
+      //alert(btn);
+      alert(this.value);
+    }
+  </script>
+</head>
+<body>
+
+<input type="button" value="clike me" id="bt1">
+
+</body>
+</html>

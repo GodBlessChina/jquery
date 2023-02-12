@@ -1,0 +1,263 @@
+任务1 了解并配置开发环境 vscode webstorm等
+
+任务2 复习主要的JavaScript语法
+    任务2代码下载地址 https://godblesschina.github.io/jquery/第一次课/复习主要的JavaScript语法.7z
+    1const let var的区别
+    2if for while
+    3基本数据类型
+    4函数 匿名函数 箭头函数 函数作为参数等
+    5奇怪语法不宜使用
+    6符号含义
+    *7作业：解释代码console.log( (!(~+[])+{}) [-- [~+""][+[]] * [~+[]] + ~~!+[]] + ({}+[]) [ [~!+[]] *~+[] ]    )
+    
+
+任务3 下载jQuery文件，导入到自己的工程中，并编写测试代码。
+      jquery下载地址:http://jquery.com/download/
+      任务3代码位置：https://godblesschina.github.io/jquery/%E7%AC%AC%E4%B8%80%E6%AC%A1%E8%AF%BE/%E4%BB%BB%E5%8A%A13%E5%BC%95%E5%85%A5jQuery%E5%8C%85.html
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>引入jQuery</title>
+
+                <!--  导入jQuery文件  -->
+                <script src="jquery-3.6.3.js"></script>
+            </head>
+            <body>
+
+            <!--编写测试代码-->
+            <script>
+                alert('准备打印$');
+                alert($);
+            </script>
+
+            </body>
+            </html>
+    常见错误：<script src="jquery-3.6.3.js">此处编写代码是错误的</script>
+            
+任务4 jQuery选择元素
+    https://godblesschina.github.io/jquery第一次课/jquery选择元素的能力.html
+    代码：
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Title</title>
+                <script src="jquery-3.6.3.js"></script>
+            </head>
+            <body>
+
+            <div id="app">
+                <ul>
+                    <li class="spec">hello</li>
+                </ul>
+            </div>
+
+            <!--引入jQuery并在所有DOM结构之后书写JavaScript程序：-->
+            <script>
+                $("#app ul li.spec").html("你好");
+            </script>
+            </body>
+            </html>
+
+任务5 jQuery批量选择元素
+    https://godblesschina.github.io/jquery第一次课/jQuery批量控制元素.html
+    代码：
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <title>jQuery批量控制元素</title>
+        <script src="jquery-3.6.3.js"></script>
+        </head>
+        <body>
+
+        <p></p>
+        <p></p>
+        <p></p>
+        <p></p>
+
+        <script>
+            $('p').css({
+            "width":60,
+            "height":60,
+            "background-color":"orange"
+            })
+        </script>
+
+        </body>
+        </html>
+
+任务6 jQuery实现运动
+    https://godblesschina.github.io/jquery第一次课/jQuery实现运动.html
+                <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>jQuery实现运动</title>
+            <script src="jquery-3.6.3.js"></script>
+            <style>
+                div{
+                width: 100px;
+                height: 100px;
+                background-color: orange;
+                position: relative;
+                }
+            </style>
+            </head>
+            <body>
+
+            <div></div>
+
+            <script>
+            // 第一个参数{"left" : 800}表示盒子的运动终点，即盒子最终将运动到left为800的位置上；
+            // 第二个参数3000表示运动的时长，以毫秒为单位，1000毫秒为1秒，即我们希望盒子以3秒完成动画
+            $("div").animate({"left": 800,"top":500},3000)
+            </script>
+
+            </body>
+            </html>
+
+任务7 dom加载完成以后运行代码
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+        <meta charset="UTF-8">
+        <title>dom加载完成以后运行代码 给按钮添加点击事件</title>
+        <script type="text/javascript" src="jquery-3.6.3.js"></script>
+        <script type="text/javascript">
+            // 错误写法，dom没有加载完成，无法获取dom中的元素
+            // document.getElementById('bt1').
+            // addEventListener('click', clickHandler,false);
+
+            // 第一种写法：原生的js
+            /*window.onload = function (){
+                alert('绑定点击事件');
+
+                document.getElementById('bt1').
+                addEventListener('click', clickHandler,false);
+            }
+            */
+
+            // 第二种写法，jQuery正常写法
+            /*
+            $('document').ready(function (){
+            $("#bt1").click(clickHandler);
+            });
+            */
+
+            // 第三种写法，jQuery简化写法
+            // 即将一个函数传入$()内当做参数，
+            // jQuery会自动理解为这是$(document).ready()的简化写法。
+            /*
+                $(function (){
+                    $("#bt1").click(clickHandler);
+                })
+            */
+
+            function clickHandler() {
+            //alert(btn);
+            alert(this.value);
+            }
+        </script>
+        </head>
+        <body>
+
+        <input type="button" value="clike me" id="bt1">
+
+        </body>
+        </html>
+
+任务7 了解原生js对象和jQuery对象
+        <script>
+            // 原生js对象
+            let person =
+                {
+                    "name": "jack",
+                    "age": 25,
+                    /**
+                    * @param foodname {string}
+                    */
+                    eat(foodname){
+                        alert('eat '+foodname);
+                    }
+                };
+            // 调用对象 person. 点号后面的提示，有括号的是什么？没有括号的是什么？
+            person.eat('apple');
+
+            // jquery对象 $(). 点号后面的提示，有括号的是什么？没有括号的是什么？
+        </script>
+
+
+任务8 通过修改div的css了解jQuery对象、jQuery对象取别名
+
+                <!DOCTYPE html>
+            <html lang="en">
+            <head>
+                <meta charset="UTF-8">
+                <title>Title</title>
+                <script src="jquery-3.6.3.js"></script>
+                <style>
+                    .box{
+                        width: 100px;
+                        height: 100px;
+                        background-color: gray;
+                        float: left;
+                        margin-right: 10px;
+                    }
+                </style>
+            </head>
+            <body>
+
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+
+
+            <script>
+                let boxes = $(".box")
+                //console.log(boxes);
+                // 这个代码是错误的，因为boxes[0]不再是jQuery 对象，而是普通js对象
+                /*boxes[0].css(
+                    "background","red"
+                )*/
+                // 原生js
+                /// boxes[0].style.background = "red";
+
+                // 将原生js转换成jQuery对象
+                /*$(boxes[0]).css(
+                    "background","red"
+                )*/
+                // 或者, 和上面的效果相同
+                $(boxes[1]).css(
+                    {
+                        "background":"red",
+                    }
+                )
+                // boxes[1] 转换成jQuery对象的方法是 用$符号包起来 $(boxes[1])
+
+                // jQuery对象取消$符号，取别名
+                let jq = $.noConflict();
+                // 下面的代码就报错了，因为$被取消了。
+                /*$(boxes[2]).css(
+                    {
+                        "background":"green",
+                    }
+                )*/
+                // 可以这样写:
+                jq(boxes[2]).css(
+                    {
+                        "background":"green",
+                    }
+                )
+            </script>
+
+            </body>
+            </html>
+
+作业：
+1 解释代码console.log( (!(~+[])+{}) [-- [~+""][+[]] * [~+[]] + ~~!+[]] + ({}+[]) [ [~!+[]] *~+[] ]    )
+2 创建5个div，通过jQuery修改每个div的颜色。
+3 创建1个div，通过jQuery使其从左上角运动到右下角。
