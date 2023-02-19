@@ -1,19 +1,96 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>jQuery笔记</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery笔记</title>
+  <style>
+    /* body{
+      background-color:peachpuff;
+      display:flex;
+      justify-content: center;
+    } */
+    .page {
+      margin: auto;
+      padding: 25px 20px 15px 20px;
+      line-height: 35px;
+      width: 90%;
+      box-shadow: 0px 1px 5px rgba(0, 0, 0, .6), 0px 0px 0px 0px rgba(255, 255, 255, 1) inset;
+      background: -moz-linear-gradient(top, #F4F39E, #F5DA41 70%, #F4F39E);
+      background: -webkit-linear-gradient(top, #F4F39E, #F5DA41 70%, #F4F39E);
+      background: -o-linear-gradient(top, #F4F39E, #F5DA41 70%, #F4F39E);
+      text-shadow: 1px 1px 1px rgba(255, 255, 255, .7);
+      border-top-left-radius: 30px;
+      border-top-right-radius: 30px;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+    }
+
+    table {
+      width: 90%;
+      border-collapse: collapse;
+    }
+
+    .head {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    .head p {
+      font-size: 20px;
+      margin: 0px;
+    }
+
+    .head p:nth-child(1),
+    p:nth-child(2) {
+      font-size: 30px;
+    }
+
+    @keyframes changep {
+      0% {
+        font-style: italic;
+        color:bisque;
+      }
+
+      25% {
+        font-style: normal;
+      }
+
+      50% {
+        font-style: italic;
+      }
+
+      100% {
+        font-style: normal;
+        color:blue;
+      }
+    }
+
+    .head p:nth-child(3) {
+      animation-name: changep;
+      animation-duration: 0.5s;
+      animation-iteration-count: infinite;
+    }
+  </style>
 </head>
-<body>
-<!-- 课程进度 -->
-<table border="1" class="dataframe">
+
+<body class="page">
+  <!-- 课程进度 -->
+  <div class="head">
+    <p>jQuery课程笔记</p>
+    <p>联系方式:周扒皮 15827001883(微信) 375857537(QQ)</p>
+    <p>关于学习和工作的问题，有问必回</p>
+  </div>
+  <table border="1" class="dataframe">
     <thead>
       <tr style="text-align: right;">
         <th></th>
         <th>周
-  次</th>
+          次</th>
         <th>起止日期</th>
         <th>教学章节内容（讲课、习题课、实验课、设计等）</th>
         <th>课内学时</th>
@@ -24,9 +101,9 @@
         <th>0</th>
         <td>1.0</td>
         <td>2.13~2.16</td>
-        <td>第一章  初始jquery
-            <a href="第一次课/《jQuery和Ajax实战教程》第1章.pptx" target="_blank">第一张章ppt下载</a>
-            <a href="第一次课/任务清单.txt" target="_blank">任务清单和代码下载</a>
+        <td>第一章 初始jquery
+          <a href="ppts/《jQuery和Ajax实战教程》第1章.pptx" target="_blank">第一张章ppt下载</a>
+          <a href="第一次课/任务清单.txt" target="_blank">任务清单和代码下载</a>
         </td>
         <td>4.0</td>
       </tr>
@@ -56,9 +133,9 @@
         <td></td>
         <td></td>
         <td>
-            第二章 jQuery对象
-            <a href="第一次课/《jQuery和Ajax实战教程》第2章.pptx" target="_blank">第2章ppt下载</a>
-            <a href="第一次课/任务清单.txt" target="_blank">任务清单和代码下载</a>
+          第二章 jQuery对象
+          <a href="ppts/《jQuery和Ajax实战教程》第2章.pptx" target="_blank">第2章ppt下载</a>
+          <a href="第一次课/任务清单.txt" target="_blank">任务清单和代码下载</a>
         </td>
         <td></td>
       </tr>
@@ -80,7 +157,11 @@
         <th>7</th>
         <td>2.0</td>
         <td>2.20-2.23</td>
-        <td>第3章 选择器</td>
+        <td>
+          第3章 选择器
+          <a href="ppts/《jQuery和Ajax实战教程》第3章.pptx" target="_blank">第3章ppt下载</a>
+          <a href="第二次课/任务清单.txt" target="_blank">任务清单和代码下载</a>
+        </td>
         <td>4.0</td>
       </tr>
       <tr>
@@ -227,7 +308,7 @@
         <th>28</th>
         <td>6.0</td>
         <td>3.20-3.23</td>
-        <td>第4章  jQuery对象的常用方法</td>
+        <td>第4章 jQuery对象的常用方法</td>
         <td>4.0</td>
       </tr>
       <tr>
@@ -618,4 +699,5 @@
     </tbody>
   </table>
 </body>
+
 </html>

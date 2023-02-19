@@ -1,0 +1,135 @@
+1 复习上次课内容
+    vscode安装，live server插件安装
+
+2 讲解对象转换：jQuery对象转js对象，js对象转jQuery对象
+    为什么需要转换对象？因为不同的对象，有不同的功能和属性。
+        python/java中 s1 = "hello" s2="hello"  s1.和s2.后面的api是都字符串的api。
+
+        class Animal:
+            name:str=""
+            age:int=0
+            def eat(self):
+                pass
+            def sleep(self):
+                pass
+
+        class Pig(Animal):
+            pass
+            
+        class Person(Animal):
+            def study(self):
+                pass
+
+        bajie = Pig()
+        peiqi = Pig()
+        bajie.和peiqi.后面的api是都Pig的api,也能看到Animal中的api，但是看不到Person的API.
+
+        banzhang = Person()
+        xuexiweiyuan = Person()
+        banzhang.和xuexiweiyuan.后面的api是都Person的api,也能看到Animal中的api,但是看不到Pig的API.
+
+    以python/java的类型转换作为例子，str(1) + "hello"  int(1)+2  ord('a')
+
+    /////////////////////////////////原生JavaScript对象和jQuery转换////////////////////////////////////////
+    // 查看数据的类型
+    // 1 原生js修改p标签内容，jQuery修改p标签内容。
+    // 2 原生JavaScript对象和jQuery的转换
+            <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>第2次课笔记</title>
+                    <script src="../jquery-3.6.3.js"></script>
+                </head>
+                <body>
+                <p>p1</p>
+                <p>p2</p>
+
+                <!--1 学会使用chrome浏览器调试代码!-->
+                <!--1学会看错误提示 2断点调试 3日志调试-->
+
+                <!--2 数据类型转换，通过了解python数据类型转换，学习js的数据类型转换-->
+                <!--判断数据类型的方法，Object.prototype.toString.call(...) 相当于 $.type(...)-->
+
+                <script>
+                    //使用原生js修改p标签的文本
+                    let pElement = document.getElementsByTagName('p');
+                    // alert(pElement instanceof HTMLCollection);// true
+                    pElement.innerHTML = "修改后的文本by js";
+
+                    //使用jQuery修改p标签的文本
+                    // $('p').html('修改后的文本by $');
+                    // alert('类型:'+$.type($('p')));
+                    // alert($("p") instanceof $);// true
+                    // alert($("p")[0] instanceof Object);//true
+                    //alert($($("p")[0]) instanceof $);// true，将js的Object对象转换成$对象
+
+                    class Person {
+                        name="";
+                        age = 0;
+
+                        constructor() {
+                            console.log("Person constructor run...");
+                        }
+
+                        eat=function (){}
+                        sleep=function (){}
+                    }
+
+                    class Student extends Person{
+                        constructor() {
+                            super();
+                            console.log("Student constructor run...");
+                        }
+                        study=function (){}
+                    }
+
+                    let stu1 = new Student();
+                    // let stu2 = new Student();
+                    //
+                    // stu1.sex = '男';
+                    // console.log("stu1.name:"+stu1.name);
+                    // console.log("stu2.name:"+stu2.name);
+
+                    //console.log(stu1.constructor);
+                </script>
+
+
+                </body>
+                </html>
+
+3 jQuery选择器
+
+css2.1选择器
+$("#id") 用id选择
+$(".class") 用class选择
+$("div") 用标签名选择，div标签
+$("div ul li") 用标签名选择子标签，div标签的后代ul，ul的后代li
+$(".class ul li.class") .号是class选择器 ul li是ul的子标签li
+$(".class1, .class2") 同时选择选择class为class1的元素，和class为class2的元素
+$("div ul *") 选择div的子标签ul的所有元素
+
+CSS3选择器
+$("div:first-child") div的第1个子元素
+$("div:last-child") div的最后一个子元素
+$("div:nth-child(2)") div的第2个子元素
+
+eq选择器，索引从0开始，倒数时从1开始
+$("li") 选择所有的li标签，是一个数组，$("li")[2]是第3个，但是$("li")[2]整体是一个原生js对象，转换成jQuery对象:$($("li")[2])
+$("li:eq(2)")是所有li标签的第3个，返回的是一个jQuery对象，更加方便。
+$("li:eq(-3)")是所有li标签的倒数第3个。
+
+gt和lt选择器，索引从0开始，greater than , less than
+$("li:gt(2)") 索引大于2的所有li标签，也就是从第【4】个li标签开始会被选取。
+
+odd奇数和even偶数选择器
+$("li:odd")索引是奇数的li标签
+
+not选择器
+$("li:not(:eq(3))")索引不是3的其它li标签，相当于伪类选择器
+
+# js基础复习：js的原型链
+
+作业：
+1 表格隔行变色，教材p26-p27，设置偶数行backgroud-color为bisque，奇数行的bacground-color为beige。
+2 使用css代码完成: 在第一题的基础上，添加效果，当鼠标hover到某个格子上时，这个格子的边框变成blue
