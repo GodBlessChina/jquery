@@ -1,0 +1,479 @@
+1 css()方法
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .class1{
+            width: 100px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+<div id="id1" class="class1"></div>
+
+<script>
+    $(".class1").css({
+        "background-color":"blue",
+        "width":"200px",
+        "width":"+=200px"
+    });
+    alert($(".class1").width());
+    alert($(".class1").height());
+</script>
+</body>
+</html>
+
+2 click()方法
+原生js点击按钮的方法1：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+  function func(){
+    alert("点击了按钮");
+  }
+</script>
+<button id="bt1" onclick="func()">按钮</button>
+
+</body>
+</html>
+
+原生js点击按钮的方法2:
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="bt1">按钮</button>
+
+<script>
+  document.getElementById("bt1").onclick = function () {
+    alert("点击了按钮");
+  };
+</script>
+</body>
+</html>
+
+原生js点击按钮的方法3：
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="bt1">按钮</button>
+
+<script>
+  let f = ()=>{
+    alert("点击了按钮。。。");
+  }
+  document.getElementById("bt1").onclick = f;
+</script>
+</body>
+</html>
+
+jQuery点击按钮1：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+</head>
+<body>
+<button id="bt1">按钮</button>
+<script>
+<!--    jQuery点击按钮 1-->
+    $("#bt1").click(function (){
+        alert("点击了按钮");
+    });
+</script>
+</body>
+</html>
+
+jQuery鼠标滑过按钮事件：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+</head>
+<body>
+<button id="bt1">按钮</button>
+<script>
+    //鼠标滑过
+    $("#bt1").mouseover(function () {
+        alert("鼠标滑过");
+    })
+</script>
+</body>
+</html>
+
+jQuery给按钮添加多个点击事件：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+</head>
+<body>
+<button id="bt1">按钮</button>
+<script>
+// <!--    jQuery点击按钮 1-->
+//     $("#bt1").click(function (){
+//         alert("点击了按钮");
+//     });
+//     //鼠标滑过
+//     $("#bt1").mouseover(function () {
+//         alert("鼠标滑过");
+//     })
+
+//设置两个事件...
+$("#bt1").click(function () {
+    alert("点击1");
+}).click(function () {
+    alert("点击2");
+});
+// 问：为什么可以连续写两个click函数.因为得到的数据类型都是 $
+alert($("#bt1") instanceof $);// true .  $("#bt1") instanceof jQuery 一样
+alert($("#bt1").click(function () {
+    alert("点击1");
+}) instanceof $);// true
+</script>
+</body>
+</html>
+
+jQuery隐藏和显示控件
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <script src="../jquery-3.6.3.js"></script>
+  <style>
+    div{
+      height: 100px;
+      width: 100px;
+      background-color: #03a9f4;
+    }
+  </style>
+</head>
+<body>
+<button id="bt1">显示</button>
+<button id="bt2">隐藏</button>
+<div class="class1"></div>
+
+<script>
+  jQuery("#bt1").click(()=>{
+    $(".class1").show();
+  });
+  jQuery("#bt2").click(()=>{
+    $(".class1").hide();
+  });
+</script>
+</body>
+</html>
+
+
+jQuery删除class
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .class1{
+            width: 100px;
+            height: 100px;
+            background-color: #03a9f4;
+        }
+    </style>
+</head>
+<body>
+<div class="class1" id="id1"></div>
+
+<script>
+    jQuery("#id1").removeClass("class1");// 删除class
+</script>
+</body>
+</html>
+
+jQuery添加class：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .class1{
+            width: 100px;
+            height: 100px;
+            background-color: #03a9f4;
+        }
+        .class2{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div class="class1" id="id1"></div>
+
+<script>
+    jQuery("#id1").removeClass("class1");// 删除class
+    jQuery("#id1").addClass("class2");
+</script>
+</body>
+</html>
+
+jQuery替换图片src
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+</head>
+<body>
+<img src="1.jpeg" id="img1">
+
+<script>
+    jQuery("#img1").mouseover(function () {
+        $(this).attr("src", "2.png").css({
+            width:"500px",
+            height:"500px"
+        });
+    }).mouseout(function (){
+        $(this).attr("src","1.jpeg");
+    });
+</script>
+</body>
+</html>
+
+
+jquery的html和text的区别：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .class1{
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+        }
+    </style>
+</head>
+<body>
+<div class="class1"></div>
+
+<script>
+    // html 显示标签
+    // $(".class1").html("<button>这是一个button</button>")
+    // text 显示字符串
+    $(".class1").text("<button>这是一个button</button>")
+
+</script>
+</body>
+</html>
+
+
+index方法：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        ul{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        li{
+            font-size: 200px;
+            color: orange;
+        }
+    </style>
+</head>
+<body>
+<ul>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+
+<script>
+    jQuery("li").mouseover(function (){
+        alert(jQuery(this).index());
+    })
+</script>
+</body>
+</html>
+
+each方法：
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        p{
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            margin-left: 5px;
+            font-size: 20px;
+
+        /*    文字居中 ??? 完成*/
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*text-align: center;*/
+        }
+    </style>
+</head>
+<body>
+<div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+</div>
+
+<script>
+    // jQuery("li").mouseover(function (){
+    //     alert(jQuery(this).index());
+    // })
+    jQuery("p").each(function () {
+        jQuery(this).html(jQuery(this).index()+1);
+    });
+</script>
+</body>
+</html>
