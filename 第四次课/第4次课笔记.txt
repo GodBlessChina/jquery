@@ -1,0 +1,192 @@
+1 无动画轮播
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .lunbo{
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*去掉li标签的圆点，消除失去圆点后左边的空白*/
+        ul,li{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            /*background-color: blue;*/
+        }
+
+
+        li:nth-child(2),li:nth-child(3){
+            display: none;
+        }
+
+        .left,.right{
+            font-size: 50px;
+            margin: 0;
+            padding: 0;
+            background-color: #03a9f4;
+            /*边框*/
+            border: orange 1px solid;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 20px;
+            border-radius: 30%;
+
+        }
+        .left{
+            position: relative;
+            left: 10px;
+        }
+        .right{
+            position: relative;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="lunbo">
+    <button class="left">
+        👈
+    </button>
+    <ul>
+        <li><img src="pic/1.jpg" alt=""></li>
+        <li><img src="pic/2.jpg" alt=""></li>
+        <li><img src="pic/3.jpg" alt=""></li>
+    </ul>
+    <button class="right">
+        👉
+    </button>
+
+    <script>
+        let index = 1;
+
+        /*给左右按钮添加点击事件*/
+        jQuery(".left").click(()=>{
+            // alert("点击了left");
+            /*if (index===0){
+                index=3;
+            } else {
+                index--;
+            }*/
+            // 三元运算符
+            index = index===1?3:--index;
+            //alert(index);
+            let lis = jQuery("li");
+            lis.css({
+                "display":"none"
+            });
+
+            $(lis[index-1]).css({
+                "display":"block"
+            })
+        }).css({
+            "cursor":"pointer"
+        });
+    </script>
+</div>
+</body>
+</html>
+
+
+
+2 自动轮播
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .lunbo{
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /*去掉li标签的圆点，消除失去圆点后左边的空白*/
+        ul,li{
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            /*background-color: blue;*/
+        }
+
+
+        li:nth-child(2),li:nth-child(3){
+            display: none;
+        }
+
+        .left,.right{
+            font-size: 50px;
+            margin: 0;
+            padding: 0;
+            background-color: #03a9f4;
+            /*边框*/
+            border: orange 1px solid;
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-bottom: 20px;
+            border-radius: 30%;
+
+        }
+        .left{
+            position: relative;
+            left: 10px;
+        }
+        .right{
+            position: relative;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+<div class="lunbo">
+    <button class="left">
+        👈
+    </button>
+    <ul>
+        <li><img src="pic/1.jpg" alt=""></li>
+        <li><img src="pic/2.jpg" alt=""></li>
+        <li><img src="pic/3.jpg" alt=""></li>
+    </ul>
+    <button class="right">
+        👉
+    </button>
+
+    <script>
+        let index = 1;
+        let handler = ()=>{
+            // 三元运算符
+            index = index===1?3:--index;
+            //alert(index);
+            let lis = jQuery("li");
+            lis.css({
+                "display":"none"
+            });
+
+            $(lis[index-1]).css({
+                "display":"block"
+            })
+        }
+
+
+
+        /*给左右按钮添加点击事件*/
+        jQuery(".left").click(handler).css({
+            "cursor":"pointer"
+        });
+        // 自动轮播
+        setInterval(handler,3000);
+        // jQuery(setInterval(handler,3000));
+
+    </script>
+</div>
+</body>
+</html>
