@@ -1,0 +1,292 @@
+setInterval函数
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+</head>
+<body>
+<div id="d">
+    content
+</div>
+<button id="bt">
+变化
+</button>
+
+<script>
+    let i = 0;
+    function changeHtml() {
+        jQuery("#d").html(++i);
+    }
+
+    jQuery("#bt").click(function () {
+        setInterval(changeHtml,1000);
+    });
+</script>
+</body>
+</html>
+
+jQuery动画
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        .box {
+            background-color: #f40384;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+
+    <script>
+        jQuery(".box").animate({
+            "left":800,
+            "top":300,
+            "width":100,
+            "height":100,
+            "border-radius":"50%",
+            opacity:1
+            // "background-color":"#c1892a"
+        },2000);
+    </script>
+</body>
+</html>
+
+
+
+单个div动画
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            opacity: 0.3;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div>
+</div>
+
+<script>
+    jQuery("div").animate({left:1000},5000);
+    jQuery("div").animate({top:500},5000);
+    jQuery("div").animate({left:0},5000);
+    jQuery("div").animate({top:0},5000);
+
+</script>
+</body>
+</html>
+
+
+多个div动画
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            position: relative;;
+            margin-top: 10px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+<script>
+    jQuery("div").animate({
+        left:1000,
+        opacity:1,
+        borderRadius:"50%"
+    },5000);
+</script>
+</body>
+</html>
+
+
+
+
+动画回调
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<div>
+
+</div>
+
+<script>
+    <!--    回调函数-->
+    jQuery("div").animate({
+        "left":500
+    },2000,function () {
+        alert("hello")
+    });
+</script>
+</body>
+</html>
+
+
+
+动画停止
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<button id="bt1">stop()</button>
+<button id="bt2">stop(true)</button>
+<button id="bt3">stop(true,true)</button>
+<button id="bt4">stop(false,true)</button>
+
+<div id="box">box</div>
+<script>
+    // 动画
+    jQuery("#box").animate({
+        "left":1000
+    },10000);
+
+    jQuery("#box").animate({
+        "top":400
+    },10000);
+
+    jQuery("#bt1").click(
+        function () {
+            jQuery("#box").stop();
+        }
+    );
+
+    jQuery("#bt2").click(
+        function () {
+            jQuery("#box").stop(true);
+        }
+    );
+
+    jQuery("#bt3").click(
+        function () {
+            jQuery("#box").stop(true,true);
+        }
+    );
+
+    jQuery("#bt4").click(
+        function () {
+            jQuery("#box").stop(false,true);
+        }
+    );
+</script>
+</body>
+</html>
+
+动画延迟
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+<button id="bt1">stop()</button>
+<button id="bt2">stop(true)</button>
+<button id="bt3">stop(true,true)</button>
+<button id="bt4">stop(false,true)</button>
+
+<div id="box">box</div>
+<script>
+    // 动画延迟
+    jQuery("#box").delay(1000).animate({
+        "left":1000
+    },10000);
+
+    jQuery("#box").animate({
+        "top":400
+    },10000);
+
+    jQuery("#bt1").click(
+        function () {
+            jQuery("#box").stop();
+        }
+    );
+
+    jQuery("#bt2").click(
+        function () {
+            jQuery("#box").stop(true);
+        }
+    );
+
+    jQuery("#bt3").click(
+        function () {
+            jQuery("#box").stop(true,true);
+        }
+    );
+
+    jQuery("#bt4").click(
+        function () {
+            jQuery("#box").stop(false,true);
+        }
+    );
+</script>
+</body>
+</html>
