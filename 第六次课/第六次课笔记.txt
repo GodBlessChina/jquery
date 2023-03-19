@@ -1,0 +1,285 @@
+复习 动画函数animate
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            position: relative;;
+            margin-top: 10px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+<script>
+    jQuery("div").animate({
+        left:1000,
+        opacity:1,
+        borderRadius:"50%"
+    },5000);
+</script>
+</body>
+</html>
+
+----------------------------------------------------------------------------
+jQuery实现div的放大
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+<!--css3 transition 动画-->
+<div id="d1">
+
+</div>
+
+<script>
+    jQuery("#d1").stop(true).mouseover(function (){
+        this.animate({
+            'width':"300px",
+            'height':"300px"
+        },1000);
+    });
+</script>
+</body>
+</html>
+
+----------------------------------------------------------------------------
+css3transition动画放大div
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            position: relative;
+            transition: width 5s, height 5s,background-color 5s;
+        }
+        div:hover{
+            width: 300px;
+            height: 300px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<!--css3 transition 动画-->
+<div>
+
+</div>
+</body>
+</html>
+
+----------------------------------------------------------------------------
+商品列表动画
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品列表</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        body{
+            display: flex;
+            justify-content: left;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        div{
+            background-color: orange;
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            margin-left: 10px;
+            /*动画的时间*/
+            transition: height 0.5s,width 0.5s,border 0.5s,background-color 0.7s,transform 0.5s;
+            /*transition: all 1s ease-in-out;*/
+            flex-shrink: 0;
+            border: 3px dashed orange;
+        }
+        /*https://thoughtbot.com/blog/transitions-and-transforms  讲解transform*/
+        div:hover{
+            /*width: 200px;*/
+            /*height: 200px;*/
+            /*border: 10px dashed orangered;*/
+            background-color: green;
+            /*scale 放大缩小   rotate旋转-20°，负数是向左旋转 translate挪动x方向+20px，y方向+20px*/
+            /*skewX(30deg)挤扁了30°*/
+            /*translateY(-50%) translateX(50%)*/
+            /*rotate(5turn) 旋转5转*/
+            /*todo 动画*/
+            transform: scale(1.2) rotate(-20deg) translate(20px, 20px) ;
+
+            /*原点不动, 默认是中心点*/
+            /*transform-origin: 0 0;*/
+            /*transform-origin: right top;*/
+            /*transform-origin: 100px 100px;*/
+            /*width: 10%;*/
+        }
+        
+  
+    </style>
+</head>
+<body>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+
+</body>
+</html>
