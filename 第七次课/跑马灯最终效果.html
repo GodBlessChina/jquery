@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>跑马灯</title>
+    <script src="jquery-3.6.3.js"></script>
+
+    <style>
+
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+
+        /*去掉图片前面的点 和左边的空白*/
+        .imgs ul, .imgs ul li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .imgs ul {
+            background-color: blue;
+            display: flex;
+            flex-direction: row;
+        }
+
+        .imgs {
+            width: 560px;
+            height: 300px;
+            overflow: hidden;
+        }
+
+        /*    左右按钮*/
+
+        .lunbo {
+            background-color: orange;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            /*父元素设置relative，子元素设置absolute, 子元素相对于父元素定位*/
+            position: relative;
+        }
+
+        .leftBtn {
+            /*父元素设置relative，子元素设置absolute, 子元素相对于父元素定位*/
+            position: absolute;
+            left: -10px;
+        }
+
+        .rightBtn {
+            /*父元素设置relative，子元素设置absolute, 子元素相对于父元素定位*/
+            position: absolute;
+            right: -10px;
+        }
+
+        /*    圆点*/
+        .circles {
+            /*background-color: #c213bc;*/
+            position: absolute;
+            bottom: 10px;
+            padding: 0;
+        }
+
+        .circles ol {
+            /*消除左边空白*/
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+        }
+
+        .circles ol li {
+            width: 16px;
+            height: 16px;
+            background-color: white;
+            /*list-style-type: square ;*/
+            border-radius: 50%;
+            /*圆点之间增加距离*/
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+/* --------------------------以下代码是编写js代码的时候再编写-------------------------------------------*/
+        /*修改left时要添加这个position: relative;*/
+        #unit{
+            position: relative;
+        }
+
+        /*动态添加小圆点背景*/
+        .circles ol li.cur{
+            background-color: #c213bc;
+        }
+
+    </style>
+</head>
+<body>
+<div class="lunbo">
+    <!--图片-->
+    <div class="imgs" id="imgs">
+        <!--    ul#unit>(li>a>img)*5-->
+        <ul id="unit">
+            <li><a href=""><img src="images/0.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/1.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/2.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/3.jpg" alt=""></a></li>
+            <li><a href=""><img src="images/4.jpg" alt=""></a></li>
+        </ul>
+    </div>
+
+
+    <!--按钮-->
+    <button id="leftBtn" class="leftBtn">&lt;</button>
+    <button id="rightBtn" class="rightBtn">&gt;</button>
+
+    <!--    圆点-->
+    <div class="circles" id="circles">
+        <!--        ol>li*5-->
+        <ol>
+            <li class="cur"></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li class="last"></li>
+        </ol>
+    </div>
+</div>
+
+<!--js-->
+<script>
+    <!--上次是通过将图片隐藏和显示完成的"display":"none"  "display":"block"-->
+    // todo 克隆第一张图片
+    $("#unit").children("li:first").clone().appendTo($("#unit"))
+
+    /*通过animate函数实现*/
+    let index = 0;
+
+
+    $("#rightBtn").click(function () {
+        index++;
+
+
+        //todo 防止动画累积 $("#unit").stop(true,true).animate(
+        if (!$("#unit").is(":animated")){ // todo 可以不添加这个if语句
+            $("#unit").animate({
+                "left":index*-560
+                //    /*修改left时要添加这个css: position: relative;*/
+                //     #unit{
+                //         position: relative;
+                //     }
+            },400, function () {
+                if (index>4){
+                    index=0;
+                    $("#unit").css({
+                        "left":0
+                    });
+                }
+                // todo 这行代码挪到这里
+                $("#circles li").eq(index).addClass("cur").siblings().removeClass('cur');
+            });
+        }
+    });
+
+</script>
+</body>
+</html>
