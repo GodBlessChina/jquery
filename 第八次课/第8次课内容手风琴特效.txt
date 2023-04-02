@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        #imgs {
+            /*background-color: #c213bc;*/
+            /*padding: 10px;*/
+            display: flex;
+            flex-direction: row;
+            /*设置父控件的position: relative;，再设置子控件的position: absolute;*/
+            position: relative;
+        }
+
+        img {
+
+            width: 323px;
+            height: 208px;
+            /*设置父控件的position: relative;，再设置子控件的position: absolute;*/
+            /*todo 首先将position定义为，absolute、relative或fixed。*/
+            position: absolute;
+            /*position: relative;*/
+        }
+
+        /*img:nth-child(1){*/
+        /*    z-index:3;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div class="imgs" id="imgs">
+    <img src="images/slide1.jpg" alt="">
+    <img src="images/slide2.jpg" alt="">
+    <img src="images/slide3.jpg" alt="">
+    <img src="images/slide4.jpg" alt="">
+    <img src="images/slide5.jpg" alt="">
+</div>
+
+<script>
+
+    $("img").each(
+        function () {
+            let img = $(this);
+            let index = parseInt(img.index());
+            console.log(index);
+            let dis = 130;
+            let zindex = 1;
+
+            dis = dis * index;
+            zindex = zindex + index;
+
+            console.log(dis)
+            console.log("------")
+            img.css({
+                "left": dis,
+                // 'z-index':zindex
+            })
+        }
+    ).click(
+        function () {
+            $("img").animate({
+                "margin-top": 0,
+                'z-index': $(this).index(),
+                "width": "323px",
+                "height": "208px"
+            })
+            $(this).animate({
+                "margin-top": 100,
+                'z-index': 5,
+                "width": "646px",
+                "height": "416px"
+            });
+        }
+    ).mouseover(function () {
+        $(this).stop(true,true).animate({
+            "margin-left": 20
+        }).animate({
+            "margin-left": 0
+        });
+    }).mouseout(function () {
+        $(this).animate({
+            "margin-left": 0
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+
+        #imgs {
+            background-color: #c213bc;
+            padding: 10px;
+            display: flex;
+            width: 646px;
+            height: 416px;
+            /*设置父控件的position: relative;，再设置子控件的position: absolute;*/
+            position: relative;
+        }
+
+        img {
+            width: 646px;
+            height: 416px;
+            /*设置父控件的position: relative;，再设置子控件的position: absolute;*/
+            /*todo 首先将position定义为，absolute、relative或fixed。*/
+            position: absolute;
+            /*position: relative;*/
+        }
+
+        /*首先将position定义为，absolute、relative或fixed。*/
+        /*---------------------第1张和第5张对称-在其它图片最下面，所以z-index=1---------------------------*/
+        img:nth-child(1) {
+            left: -400px;
+            /*transform: scale(0.5);*/
+            width: 323px;
+            height: 208px;
+            /*todo 首先将position定义为，absolute、relative或fixed。*/
+            z-index: 1;
+        }
+
+        img:nth-child(5) {
+            right: -400px;
+            /*transform: scale(0.5);*/
+            width: 323px;
+            height: 208px;
+            z-index: 1;
+        }
+
+        /*---------------------第2张和第4张对称----------------------------*/
+        img:nth-child(2) {
+            left: -250px;
+            /*transform: scale(0.75);*/
+            width: 484.5px;
+            height: 312px;
+            z-index: 2;
+        }
+
+        img:nth-child(4) {
+            right: -250px;
+            /*transform: scale(0.75);*/
+            width: 484.5px;
+            height: 312px;
+            z-index: 2;
+        }
+
+        /*---------------------第3张在最上层，所以z-index=3最大----------------------------*/
+        img:nth-child(3) {
+            z-index: 3;
+        }
+
+    </style>
+</head>
+<body>
+<!--    646*416-->
+<div class="imgs" id="imgs">
+    <img src="images/slide1.jpg" alt="">
+    <img src="images/slide2.jpg" alt="">
+    <img src="images/slide3.jpg" alt="">
+    <img src="images/slide4.jpg" alt="">
+    <img src="images/slide5.jpg" alt="">
+</div>
+
+<script>
+    // 原理:点击某张图片,该图片处于中间,其它图片按照原有的顺序移动
+    // 如果点击的是左边,向右移动
+    // 如果点击的是右边,向左移动
+
+
+    let to_right = function () {
+
+    }
+
+    let to_lef = function () {
+
+    }
+
+    let print_arr = function (arr) {
+        //打印数组
+        for (let j = 0; j < arr.length; j++) {
+            console.log(arr[j]);
+        }
+        console.log("-----------------------");
+    }
+
+    // 获取被点击的图片所在的位置
+    let charAt = function (img_names_arr, clicked_name) {
+        for (let i = 0; i < img_names_arr.length; i++) {
+            if (img_names_arr[i] === clicked_name) {
+
+                // 返回被点击的图片索引之前,
+                img_names_arr[2] = clicked_name;
+                img_names_arr[1] = clicked_name - 1;
+                img_names_arr[0] = clicked_name - 2;
+                img_names_arr[3] = clicked_name + 1;
+                img_names_arr[4] = clicked_name + 2;
+                if (clicked_name === 0) {
+                    img_names_arr[0] = 3;
+                    img_names_arr[1] = 4;
+                }
+                if (clicked_name === 1) {
+                    img_names_arr[0] = 5;
+                }
+                if (clicked_name === 4) {
+                    img_names_arr[3] = 0;
+                    img_names_arr[4] = 1;
+                }
+                if (clicked_name === 3) {
+                    img_names_arr[4] = 0;
+                }
+
+
+                // 在数组中找到了要被点击的图片的名字和索引,返回索引
+                return i;
+            }
+        }
+    }
+
+    let img_names_arr = [0, 1, 2, 3, 4];
+
+    let imgs_location = {
+        "0": {
+            "z-index": 1,
+            "left": "-400px",
+            // "scale":0.5,
+            "width": "323px",
+            "height": "208px"
+
+        },
+        "1": {
+            "z-index": 2,
+            "left": "-250px",
+            // scale:0.75,
+            "width": "484.5px",
+            "height": "312px"
+
+        },
+        "2": {
+            "z-index": 3,
+            "left": '0px',
+            "width": "646px",
+            "height": "416px"
+        },
+        "3": {
+            "z-index": 2,
+            "right": "-250px",
+            "scale": 0.75,
+            "width": "484.5px",
+            "height": "312px"
+        },
+        "4": {
+            "z-index": 1,
+            "right": "-400px",
+            // "scale":0.5,
+            "width": "323px",
+            "height": "208px"
+        }
+    }
+
+    let move = function (arr) {
+        // 例如arr=[1,2,3,4,0]
+        // 按照新的arr的顺序动起来
+        for (let index = 0; index < arr.length; index++) {
+            // 图片的位置是index
+            // 图片的名字是:
+            let img_name = arr[index]; // arr[4]=0
+
+            let css_obj = imgs_location[index.toString()];
+            console.log(css_obj);
+            // $("img").css({
+            //     "left": 0,
+            //     "width": "646px",
+            //     "height": "416px"
+            // })
+            $("img").eq(img_name).animate({
+                "z-index": 1
+            },0).animate(css_obj, 1000);
+
+        }
+    }
+
+    $("img").click(function () {
+        // 获取被点击的img的索引:
+        let clicked_name = parseInt($(this).index());
+        // 判断是往左,还是往右移动, todo 如果点击的是中间图片,不动
+        char_at = charAt(img_names_arr, clicked_name);
+        if (char_at === 2) {
+            //alert("不动");
+            print_arr(img_names_arr);
+            return; // 代码不要继续往下走了
+        }
+
+        // 代码能走到这里,说明点击的图片不是中间的,应该动起来
+        // alert("动起来");
+        // 新顺序:
+        print_arr(img_names_arr);
+        move(img_names_arr);
+
+
+        // if (charAt(img_names_arr, clicked_name) < 2) {
+        //     alert("向右移动")
+        // }
+        // if (charAt(img_names_arr, clicked_name) > 2) {
+        //     alert("向左移动")
+        // }
+    });
+</script>
+</body>
+</html>
