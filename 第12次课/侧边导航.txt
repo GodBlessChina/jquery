@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../jquery-3.6.3.js"></script>
+    <style>
+        #outer{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            /*background-color: #c213bc;*/
+        }
+        #nav{
+            display: flex;
+            position: fixed;
+            left: 0;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            /*background-color: #03a9f4;*/
+            height: 100px;
+            width: 200px;
+            margin-right: 10px;
+            /*border: 1px dashed #03a9f4;*/
+        }
+        #nav div{
+            border-bottom: #03a9f4 2px solid;
+            margin-bottom: 20px;
+        }
+        #content div{
+            height: 500px;
+            margin-bottom: 10px;
+            background-color: #03a9f4;
+            width: 1000px;
+        }
+    </style>
+</head>
+<body>
+    <div id="outer" class="outer">
+        <div id="nav" class="nav">
+            <div>内容1</div>
+            <div>内容2</div>
+            <div>内容3</div>
+        </div>
+        <div id="content" class="content">
+            <div>1</div>
+            <div>2</div>
+            <div>3</div>
+        </div>
+    </div>
+
+    <script>
+        // 鼠标挪动到导肮上变成手指
+        let navs = $("#nav div");
+        navs.css( 'cursor', 'pointer' );
+        navs.click(function () {
+            // alert($(this).offset().top);
+            // alert($(this).index())
+
+            // 点击导航以后，window卷动, 这里的500应该是动态的
+            // $("html, body").animate({
+            //     "scrollTop":500
+            // },1000);
+            ////////////////////////////////////
+
+            // 获取卷动的高度
+            // 获取点击的索引
+            let index = $(this).index();
+            // alert(index)
+            // 获取应该卷动到顶部的内容
+            // let content = $("#content div:eq("+ index +")");
+            let content = $(`#content div:eq(${index})`); // 字符串格式化,使用esc按键下面的那个引号
+            //alert(content.html())// 点击导航栏，获取相应内容的文本
+            let height = content.offset().top; // 点击导航栏，获取相应内容 离top的距离
+            // 卷动
+            $("html, body").animate({
+                    "scrollTop":height
+            },1000);
+        });
+    </script>
+</body>
+</html>

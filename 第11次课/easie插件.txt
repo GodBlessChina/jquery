@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jquery插件 easie</title>
+    <script src="jquery-3.6.4.js"></script>
+    <script src="jquery.easing.1.3.js"></script>
+    <style>
+        div{
+            width: 100px;
+            height: 100px;
+            margin-top: 10px;
+            background-color: blueviolet;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <div class="d1"></div>
+    <div class="d2"></div>
+    <div class="d3"></div>
+
+    <script>
+        $(".d1").animate({
+            "left":"300px"
+        },2000,"easeInOutQuart");
+
+        $(".d2").animate({
+            "left":"300px"
+        },2000,"easeOutSine");
+
+
+        $(".d3").animate({
+            "left":"300px"
+        },3000,"easeOutBack");
+    </script>
+</body>
+</html>

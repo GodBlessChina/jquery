@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- 先导入这个包 -->
+    <script src="jquery-3.6.4.js"></script>
+    <!-- 导入jqury ui相关的包 -->
+    <script src="jquery-ui.js"></script>
+    <link rel="stylesheet" href="jquery-ui.css">
+    
+
+
+    <style>
+        #input_name{
+            width: 500px;
+            height: 50px;
+            font-size: 35px;
+            color: brown;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <input id="input_name" type="text">
+
+    <!-- 自动完成 -->
+    <script>
+        let names = ["jack ma", "lucy", "lily", "hanmeimei", "lilei"];
+
+        // 作业就是换点号后面的函数和函数的参数
+        $("#input_name").autocomplete({
+            // 源， 绑定一个数据源
+            source:names
+        });
+    </script>
+</body>
+</html>
