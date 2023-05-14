@@ -1,0 +1,105 @@
+教程: https://www.runoob.com/django/django-template.html
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+创建
+django-admin startproject c13
+在 c13下面的c13中创建一个 views.py 
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+vies.py代码如下:
+from django.http import HttpResponse
+
+def homepage(request):
+    print(request)
+    return HttpResponse("主页")
+
+def register(request):
+    return HttpResponse("注册...")
+
+def login(request):
+    return HttpResponse("登录")
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+配置urls.py
+from django.contrib import admin
+from django.urls import path
+
+from . import views
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # 配置登录页面
+    path('login', views.login),
+    # 配置注册页面
+    path('register', views.register),
+    # 配置主页 http://127.0.0.1:8000/
+    path(r'', views.homepage),
+]
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+启动:
+python manage.py runserver
+或者
+python manage.py runserver 0.0.0.0:8000
+0.0.0.0 让其它电脑可连接到开发服务器
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+在c13目录下，也就是manage.py同级目录下，创建templates文件夹，用于html文件
+在templates下创建文件home.html
+
+配置settings.url:
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR, 'templates')], 这里是将templates文件夹配置成默认的模板页面
+		
+在views.py中添加代码：
+def homepage(request):
+    # {"hello":"你好"} 是返回的值
+    return render(request, 'home.html',{"hello":"你好"})   # 可以看到，我们这里使用 render 来替代之前使用的 HttpResponse。render 还使用了一个字典 context 作为参数。
+在urls.py中配置首页：
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    # 配置登录页面
+    path('login', views.login),
+    # 配置注册页面
+    path('register', views.register),
+    ### 配置主页 http://127.0.0.1:8000/
+    path(r'', views.homepage),
+]
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+模板语法：
+views.py：｛"HTML变量名" : "views变量名"｝
+HTML文件中：｛｛变量名｝｝
+
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+登录页面：
+1 创建login.html
+2 在urls.py配置路径 path('login', views.login),
+3 在views.py等login函数修改代码：
+	def login(request):
+		# return HttpResponse("登录")
+		return render(request, "login.html") # 修改代码
+4 在login.html中编写ajax代码，点击按钮后提交账号密码post到 http://127.0.0.1:8000/ajaxlogin
+
+	为了添加jquery文件，修改如下文件https://www.cnblogs.com/maskerk/p/7903058.html： 
+	在settings.py中添加:
+		STATICFILES_DIRS = (
+			os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+		)
+	在login.html文件中引入:
+		<script src="../../static/jquery-3.6.3.js"></script>
+
+	ajax请求 https://www.cnblogs.com/sch01ar/p/11455656.html ：
+	
+	    $("#bt1").click(function () {
+			alert("提交数据");
+			// 如果出现403错误，添加这个csrfmiddlewaretoken参数
+			var csrfToken = $("[name='csrfmiddlewaretoken']").val();
+			$.ajax({
+				url: " http://127.0.0.1:8000/ajaxlogin",
+				type: "POST",
+				data: {"user": $("#user").val(), "pwd": $("#pwd").val(),"csrfmiddlewaretoken": csrfToken},// // 如果出现403错误，添加csrfmiddlewaretoken这个参数
+				success: function (data) {
+					//$("#i3").val(data);
+					alert(data);
+				}
+			})
+		});
