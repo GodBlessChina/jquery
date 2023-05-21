@@ -86,17 +86,24 @@ HTML文件中：｛｛变量名｝｝
 		)
 	在login.html文件中引入:
 		<script src="../../static/jquery-3.6.3.js"></script>
+		<script src="../../static/md5.js"></script>
+		
+		在body中添加:
+		{% csrf_token %}
 
 	ajax请求 https://www.cnblogs.com/sch01ar/p/11455656.html ：
 	
 	    $("#bt1").click(function () {
 			alert("提交数据");
+			let pwd = $("#pwd").val();
+			pwd = md5(pwd);
+			let user = $("#user").val();
 			// 如果出现403错误，添加这个csrfmiddlewaretoken参数
 			var csrfToken = $("[name='csrfmiddlewaretoken']").val();
 			$.ajax({
 				url: " http://127.0.0.1:8000/ajaxlogin",
 				type: "POST",
-				data: {"user": $("#user").val(), "pwd": $("#pwd").val(),"csrfmiddlewaretoken": csrfToken},// // 如果出现403错误，添加csrfmiddlewaretoken这个参数
+				data: {"user": user, "pwd": pwd,"csrfmiddlewaretoken": csrfToken},// // 如果出现403错误，添加csrfmiddlewaretoken这个参数
 				success: function (data) {
 					//$("#i3").val(data);
 					alert(data);

@@ -1,0 +1,150 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="jquery-3.6.3.js"></script>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        div{
+            background-color: #c213bc;
+            margin-bottom: 1px;
+            margin-top: 1px;
+            width: 100px;
+            height: 100px;
+            position: absolute;
+            border: 1px solid #03a9f4;
+        }
+        div:nth-of-type(1){
+            height: 230px;
+        }
+        div:nth-of-type(3){
+            height: 110px;
+        }
+        div:nth-of-type(4){
+            height: 150px;
+        }
+        div:nth-of-type(5){
+            height: 340px;
+        }
+        div:nth-of-type(6){
+            height: 270px;
+        }
+        div:nth-of-type(10){
+            height: 100px;
+        }
+        div:nth-of-type(11){
+            height: 300px;
+        }
+        div:nth-of-type(14){
+            height: 20px;
+        }
+        div:nth-of-type(13){
+            height: 50px;
+        }
+        div:nth-of-type(12){
+            height: 200px;
+        }
+        div:nth-of-type(20){
+             height: 70px;
+         }
+        div:nth-of-type(25){
+            height: 130px;
+        }
+        div:nth-of-type(27){
+            height: 190px;
+        }
+        div:nth-of-type(30){
+            height: 250px;
+        }
+
+    </style>
+</head>
+<body>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+<div>1</div>
+
+<script>
+    $("div").each(function () {
+        let index = $(this).index()+1;
+        $(this).html(index);
+
+        /////////////////////最后可以添加每个div随机高度///////////////////////////////////
+        // $(this).css({
+        //     "height":Math.random()*300,
+        //     // ****** 绝对定位，便于瀑布流布局
+        //     "position":"absolute"
+        // });
+        ////////////////////////////////////////////////////////////
+
+        // 每行10个
+        // div的宽度
+        let w_div = $(this).width()+10; // div 间距10
+        // 所在的行
+        let row = Math.ceil(index/10);
+        // 所在的列
+        let column = parseInt(index%10)
+        if (column===0)
+            column=10;
+
+        console.log(index + "," + column);
+
+
+
+        // 设置top
+        $(this).css({
+            "left":(column-1)*w_div,
+            "top":(row-1) * 500
+        })
+
+        // ******* 最后 计算top:
+        let top = 0;
+        for (let i = index-10; i > 1; i-=10) {
+            top = top + $("div:eq(" + (i-1) + ")").height()
+        }
+        // 设置top
+        $(this).css({
+            "left":(column-1)*w_div,
+            "top":top
+        })
+        console.log("...."+top);
+    });
+
+</script>
+</body>
+</html>
